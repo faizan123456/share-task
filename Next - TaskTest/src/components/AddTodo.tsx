@@ -10,7 +10,7 @@ import {useToast} from "./ui/use-toast";
 import Select from 'react-select';
 import { getCookie, setCookie } from 'cookies-next'
 // import { jwtDecode, JwtPayload } from 'jwt-decode';
-import jwt_decode from 'jwt-decode';
+import jwt_decode, { JwtPayload } from 'jwt-decode';
 
 const baseUrl = process.env.NEXT_PUBLIC_API_URL
 
@@ -48,9 +48,9 @@ const AddTodo = (props: Props) => {
 
 	}, [])
 	
-	const token = getCookie("token")
+	const token:any = getCookie("token")
 	console.log('token--->', token)
-	// const logggedin = jwt_decode(token)
+	const createdBy = jwt_decode(token) as JwtPayload
 	// const loggedinUser:any = jwtDecode<JwtPayload>(token);
 
   const options:any = [
@@ -68,7 +68,7 @@ const AddTodo = (props: Props) => {
 			setIsLoading(true);
 			const obj = {
 				assignedTo: assignee,
-				// assignedFrom: loggedinUser._id,
+				// createdBy: loggedinUser._id,
 				title: values.title,
 				status: 'created'
 			}

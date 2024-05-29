@@ -11,14 +11,17 @@ import { AuthService } from './auth/auth.service';
 import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
 import { AuthGuard } from './auth/auth.guard';
-
+import * as dotenv from 'dotenv';
+dotenv.config()
+const mongo_uri = process.env.DB_URL
+console.log('process.env.DB_URL', mongo_uri)
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-      isGlobal: true,
-    }),
-    MongooseModule.forRoot(process.env.DB_URL),
+    // ConfigModule.forRoot({
+    //   envFilePath: ".env",
+    //   isGlobal: true,
+    // }),
+    MongooseModule.forRoot(mongo_uri),
     TaskModule,
     UserModule,
     AuthModule,

@@ -1,3 +1,4 @@
+import { PermissionDto } from './dto/permission.dto';
 import {
   Body,
   Controller,
@@ -59,6 +60,11 @@ export class TaskController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateTaskDto: UpdateTaskDto) {
     return this.taskService.update(id, updateTaskDto);
+  }
+
+  @Patch(':id')
+  changePermission(@Param('id') id: string, @Body() permissionDto: PermissionDto) {
+    return this.taskService.update(id, permissionDto);
   }
 
   @Delete(':id')

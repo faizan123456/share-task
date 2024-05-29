@@ -14,6 +14,7 @@ import { getCookie, setCookie } from 'cookies-next'
 const baseUrl = process.env.NEXT_PUBLIC_API_URL
 
 
+
 const userSchema = yup.object().shape({
 	email: yup.string().email("Invalid email").required("Email is required"),
 	password: yup
